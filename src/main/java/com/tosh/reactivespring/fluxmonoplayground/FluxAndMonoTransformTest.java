@@ -2,6 +2,7 @@ package com.tosh.reactivespring.fluxmonoplayground;
 
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.util.Arrays;
@@ -100,6 +101,18 @@ public class FluxAndMonoTransformTest {
         StepVerifier.create(namesFlux)
                 .expectNextCount(12)
                 .verifyComplete();
+    }
+
+    @Test
+    public void convertFluxToInt(){
+         int x;
+
+         Mono.just(x = 1)
+                 .subscribe();
+
+        System.out.println(x);
+
+
     }
 
 }
