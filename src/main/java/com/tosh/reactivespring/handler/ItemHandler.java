@@ -78,4 +78,8 @@ public class ItemHandler {
                         .switchIfEmpty(notFound)
         );
     }
+
+    public Mono<ServerResponse> itemsEx(ServerRequest serverRequest) {
+        throw  new RuntimeException("KEKE");
+    }
 }
