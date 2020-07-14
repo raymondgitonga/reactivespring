@@ -20,6 +20,12 @@ public class ItemController {
     @Autowired
     ItemReactiveRepository itemReactiveRepository;
 
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handleRuntimeException(RuntimeException ex){
+        log.error("Exception caught in handleRuntimeException : {} " , ex);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+    }
+
     @GetMapping(ITEMS_ENDPOINT_V1)
     public Flux<Item>getAllItems(){
         return itemReactiveRepository.findAll();
@@ -30,6 +36,12 @@ public class ItemController {
         return itemReactiveRepository.findById(id)
                 .map((item)-> new ResponseEntity<>(item, HttpStatus.OK))
                 .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping(ITEMS_ENDPOINT_V1 + "/runtimeException")
+    public Flux<Item> runtimeException(){
+        return itemReactiveRepository.findAll()
+                .concatWith(Mono.error(new RuntimeException("Exception")));
     }
 
     @PostMapping(ITEMS_ENDPOINT_V1)
