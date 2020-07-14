@@ -1,4 +1,4 @@
-package com.tosh.reactivespring;
+package com.tosh.reactivespring.FluxAndMonoPlayGround;
 
 public class CustomException extends Throwable {
     private String message;

@@ -1,4 +1,4 @@
-package com.tosh.reactivespring;
+package com.tosh.reactivespring.FluxAndMonoPlayGround;
 
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;
